@@ -1,0 +1,24 @@
+.git
+.gitignore
+__pycache__/
+venv/
+env/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+tests/
+.env
+
+# CRITICAL: Exclude google-cloud-sdk (427MB) - prevents upload timeout
+google-cloud-sdk/
+Docker.dmg
+
+# Build artifacts
+*.egg-info
+dist/
+build/
+
+# Keep data/chroma_db.tar.gz - required for deployment!
+# Keep data/raw/ - contains telecom documents (29 files)

@@ -1,0 +1,34 @@
+Dockerfile
+.dockerignore
+.git
+.gitignore
+__pycache__
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+venv
+.env
+.idea
+*.iml
+*.project
+*.pydevproject
+.classpath
+*.launch
+.settings
+*.sublime-workspace
+*.vsix
+*.vscode
+tests
+
+# CRITICAL: Exclude google-cloud-sdk (427MB) - massive build speedup
+google-cloud-sdk/
+Docker.dmg
+
+# Build artifacts
+*.egg-info
+dist/
+build/
+

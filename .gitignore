@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+env/
+.DS_Store
+google-cloud-sdk/
+Docker.dmg
+*.egg-info
+dist/
+build/
+
+# Exclude extracted ChromaDB (use tar.gz instead)
+data/chroma_db/
+
+# Exclude large data files (download separately or regenerate)
+data/chroma_db.tar.gz
+data/bm25_index.pkl
+data/processed/

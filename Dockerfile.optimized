@@ -1,0 +1,39 @@
+# syntax=docker/dockerfile:1.4
+
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system-level dependencies
+COPY packages.txt .
+RUN apt-get update && apt-get install -y --no-install-recommends $(cat packages.txt) && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install dependencies with pip cache mount (HUGE speedup on rebuilds)
+COPY requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application files
+COPY . .
+
+# Extract compressed chroma_db if present (for cloud deployment optimization)
+RUN if [ -f data/chroma_db.tar.gz ]; then \
+    echo "📦 Extracting chroma_db..." && \
+    tar -xzf data/chroma_db.tar.gz -C ./ && \
+    rm data/chroma_db.tar.gz; \
+    fi
+
+# Make port 8501 available to the world outside this container
+EXPOSE 8501
+
+# Cloud deployment environment variables (defaults for graceful degradation)
+ENV LLM_PROVIDER=openai
+ENV EMBEDDING_PROVIDER=openai
+ENV ENABLE_RERANK=false
+ENV ENABLE_HYBRID=true
+ENV ENABLE_REDIS=false
+
+# Run app.py when the container launches
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

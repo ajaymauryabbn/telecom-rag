@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(python3:*)",
+      "Bash(gcloud builds list:*)",
+      "Bash(/Users/ajaymaurya/Downloads/telecom-rag/google-cloud-sdk/bin/gcloud builds list --limit=3 --format=\"table\\(id,status,duration,createTime\\)\")",
+      "Bash(/Users/ajaymaurya/Downloads/telecom-rag/google-cloud-sdk/bin/gcloud run services describe:*)",
+      "Bash(/Users/ajaymaurya/Downloads/telecom-rag/google-cloud-sdk/bin/gcloud container images list --repository=gcr.io/telecom-rag)",
+      "Bash(/Users/ajaymaurya/Downloads/telecom-rag/google-cloud-sdk/bin/gcloud builds describe:*)",
+      "Bash(/Users/ajaymaurya/Downloads/telecom-rag/google-cloud-sdk/bin/gcloud run deploy:*)",
+      "Bash(bash:*)"
+    ]
+  }
+}

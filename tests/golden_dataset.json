@@ -1,0 +1,27 @@
+[
+    {
+        "category": "factual",
+        "question": "What is the primary function of the 5G NR RRC protocol?",
+        "ground_truth": "The Radio Resource Control (RRC) protocol in 5G NR handles the control plane signaling between the UE and the gNB. Its primary functions include connection establishment and release, system information broadcast, radio bearer configuration, and mobility management."
+    },
+    {
+        "category": "performance",
+        "question": "Which KPIs are critical for monitoring 5G slice adherence?",
+        "ground_truth": "Key Performance Indicators (KPIs) for 5G slicing include Latency (Round Trip Time), Throughput (Uplink/Downlink), Reliability (Packet Loss Rate), and Availability. Slice-specific KPIs ensuring SLA compliance are also critical."
+    },
+    {
+        "category": "troubleshooting",
+        "question": "How do I troubleshoot a 'Radio Link Failure' (RLF) on a gNodeB?",
+        "ground_truth": "To troubleshoot RLF: 1. Check signal strength (RSRP/RSRQ) and interference levels. 2. Verify handover parameters and neighbor relations. 3. Check for hardware alarms on the DU/RU. 4. Analyze RRC Connection Re-establishment logs."
+    },
+    {
+        "category": "standards",
+        "question": "What is defined in 3GPP TS 38.331?",
+        "ground_truth": "3GPP TS 38.331 specifies the Radio Resource Control (RRC) protocol for the New Radio (NR) access technology. It defines the messages and procedures for control plane signaling between the User Equipment (UE) and the Next Generation RAN (NG-RAN)."
+    },
+    {
+        "category": "maintenance",
+        "question": "What are the standard safety checks before climbing a telecom tower?",
+        "ground_truth": "Standard safety checks include: 1. verifying PPE gear (harness, helmet), 2. checking weather conditions (wind/lightning), 3. ensuring RF transmitters are powered down or locked out (LOTO), and 4. inspecting the tower structure for visible damage."
+    }
+]

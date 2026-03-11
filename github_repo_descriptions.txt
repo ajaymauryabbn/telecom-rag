@@ -1,0 +1,93 @@
+GitHub Repository Descriptions
+==============================
+Author: Ajay Maurya (ajaymauryabbn)
+Generated: 2026-03-11
+==============================
+
+
+1. SQL-EVAL
+-----------
+Link: https://github.com/ajaymauryabbn/sql-eval
+
+Description:
+An open-source evaluation framework for benchmarking Text-to-SQL systems.
+Measures how accurately different LLMs translate natural language questions
+into executable SQL — going beyond polished demos to expose real-world
+failure patterns.
+
+Key Features:
+- Three accuracy metrics: Exact Match, Structural Match, Execution Match
+- Supports OpenAI, Anthropic Claude, Ollama, and SQLCoder as LLM backends
+- Pre-bundled e-commerce dataset with 35 ready-to-run test cases
+- 100% local/offline evaluation option — schema and data never leave your machine
+- Flexible schema input: SQL files, DDL strings, or live database connections
+- Output formats: console, JSON, HTML reports
+- CLI for quick testing + Python API for programmatic integration
+- Custom dataset support via CSV and JSON
+
+Tech Stack: Python 3.10+, OpenAI, Anthropic, Ollama, SQLite
+License: MIT
+
+
+2. MADA (Multi-Agent Data Analyst)
+-----------------------------------
+Link: https://github.com/ajaymauryabbn/multi-agent-data-analyst
+
+Description:
+A LangGraph-powered multi-agent system that answers complex business questions
+by intelligently routing between SQL generation, document retrieval, and
+answer synthesis. Bridges the gap between structured databases and unstructured
+documents in a single conversational interface.
+
+Architecture:
+- Router Agent: classifies queries as SQL-only, document-only, or hybrid
+- SQL Agent: generates, validates, and auto-retries SQL queries
+- Document Agent: ChromaDB retrieval with cross-encoder re-ranking
+- Synthesizer: merges results, resolves conflicts, and adds citations
+
+Key Features:
+- Intelligent query routing with intent classification
+- Schema-aware SQL generation with automatic retry on failure
+- Document retrieval with re-ranking for higher precision
+- Conflict resolution when SQL data and documents disagree
+- Conversation memory for multi-turn follow-up questions
+- LangSmith integration for full observability
+- Evaluation suite measuring both accuracy and latency
+- Bundled e-commerce SQLite dataset (500 customers, 200 products,
+  5,000 orders, 2,000 reviews across 15 Indian cities)
+
+Tech Stack: Python 3.10+, LangGraph, OpenAI GPT-4o-mini, ChromaDB,
+            FastAPI, Streamlit, SQLite, Ollama (fallback)
+
+
+3. TELECOM RAG
+--------------
+Link: https://github.com/ajaymauryabbn/telecom-rag
+
+Description:
+An AI-powered Retrieval-Augmented Generation (RAG) assistant for telecom
+operations support. Answers technical telecom questions (5G, MIMO, HARQ,
+network protocols, etc.) using a knowledge base of 32,802 documents, deployed
+on Google Cloud Run.
+
+Live Demo: https://telecom-rag-service-506663951983.us-central1.run.app
+
+Key Features:
+- Hybrid Search: BM25 (keyword) + Dense (semantic) + RRF fusion for best recall
+- 32,802 documents from the TeleQnA dataset covering comprehensive telecom topics
+- Intelligent query routing with intent classification
+- RAGAS evaluation across 6 answer-quality metrics (Faithfulness, Relevancy,
+  Context Precision/Recall, Context Relevancy, TLM Trust Score)
+- TLM Trust Scoring for hallucination detection
+- Redis semantic caching for faster repeated queries
+- Rate limiting (50 requests/minute per session)
+- Cloud-native deployment on Google Cloud Run
+
+Performance:
+- Warm response time: 1-3 seconds
+- Answer accuracy: 85%+ (RAGAS)
+- Memory footprint: 2-3 GB
+
+Tech Stack: Python 3.9, Streamlit, OpenAI GPT-4o-mini, Google Gemini (fallback),
+            ChromaDB (3072-dim embeddings), text-embedding-3-large, BM25,
+            Redis, Docker, Google Cloud Run

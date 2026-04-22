@@ -11,6 +11,16 @@ Docker.dmg
 dist/
 build/
 
+# Claude Code session artifacts
+.claude/
+
+# Internal working/planning files
+PRESENTATION.txt
+claude_Data_guide.md
+bhart_airtel_docs_guide.md
+manual_downloads.md
+*.docx
+
 # Exclude extracted ChromaDB (use tar.gz instead)
 data/chroma_db/
 

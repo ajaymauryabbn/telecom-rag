@@ -28,7 +28,7 @@ Try asking: *"What is HARQ in 5G?"* or *"Explain MIMO technology"*
 
 ## Demo
 
-![Telecom RAG Demo](docs/hf_demo.webp)
+![Telecom RAG Demo](docs/hf_demo.gif)
 
 > *Ask any telecom question — the system retrieves relevant documents, generates a grounded answer, and shows a Trust Score with source citations.*
 

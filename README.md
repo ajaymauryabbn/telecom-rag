@@ -1,33 +1,45 @@
-# 📡 Telecom RAG Assistant
+# Telecom RAG Assistant
 
 AI-powered Retrieval-Augmented Generation (RAG) system for telecom operations support, deployed on Google Cloud Run.
 
 [![Cloud Run](https://img.shields.io/badge/Cloud%20Run-Live-4285F4?logo=google-cloud)](https://telecom-rag-service-506663951983.us-central1.run.app)
 [![Python](https://img.shields.io/badge/Python-3.9-3776AB?logo=python)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-Private-red)]()
+![RAG](https://img.shields.io/badge/RAG-LangChain-green)
+![VectorDB](https://img.shields.io/badge/VectorDB-ChromaDB-orange)
+![UI](https://img.shields.io/badge/UI-Streamlit-red)
 
-## 🚀 Live Demo
+## Live Demo
 
 **Production URL**: https://telecom-rag-service-506663951983.us-central1.run.app
+
+> **Note**: Hosted on Cloud Run (scales to zero). First request may take 15–30s for a cold start — subsequent queries respond in 1–3s.
 
 Try asking: *"What is HARQ in 5G?"* or *"Explain MIMO technology"*
 
 ---
 
-## ✨ Features
+## Demo
 
-- **🔍 Hybrid Search**: Combines BM25 (keyword) + Dense (semantic) + RRF fusion
-- **📚 32,802 Documents**: Comprehensive telecom knowledge base
-- **🎯 Intelligent Routing**: Query intent classification
-- **📊 RAGAS Evaluation**: 6-metric answer quality assessment
-- **🔐 Trustworthy AI**: TLM Trust Scoring for hallucination detection
-- **⚡ Redis Caching**: Semantic caching for faster responses
-- **🌐 Cloud Native**: Optimized for Google Cloud Run
-- **🔄 Rate Limiting**: 50 requests/minute per session
+![Telecom RAG Demo](docs/demo.gif)
+
+> *Ask any telecom question — the system retrieves relevant documents, generates a grounded answer, and shows a Trust Score with source citations.*
 
 ---
 
-## 🏗️ Architecture
+## Features
+
+- **Hybrid Search**: Combines BM25 (keyword) + Dense (semantic) + RRF fusion
+- **32,802 Documents**: Comprehensive telecom knowledge base
+- **Intelligent Routing**: Query intent classification
+- **RAGAS Evaluation**: 6-metric answer quality assessment
+- **Trustworthy AI**: TLM Trust Scoring for hallucination detection
+- **Redis Caching**: Semantic caching for faster responses
+- **Cloud Native**: Optimized for Google Cloud Run
+- **Rate Limiting**: 50 requests/minute per session
+
+---
+
+## Architecture
 
 ```
 User Query → Glossary Expansion → Hybrid Retrieval → Reranking → LLM Generation → Evaluation
@@ -42,9 +54,11 @@ User Query → Glossary Expansion → Hybrid Retrieval → Reranking → LLM Gen
 - **Cache**: Redis with semantic similarity matching
 - **Evaluation**: RAGAS metrics + TLM Trust Score
 
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the full system design.
+
 ---
 
-## 📊 Performance
+## Performance
 
 | Metric | Value |
 |--------|-------|
@@ -57,7 +71,7 @@ User Query → Glossary Expansion → Hybrid Retrieval → Reranking → LLM Gen
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Python 3.9, Streamlit
 - **LLM**: OpenAI GPT-4o-mini, Google Gemini
@@ -65,16 +79,15 @@ User Query → Glossary Expansion → Hybrid Retrieval → Reranking → LLM Gen
 - **Search**: BM25 + Dense embeddings + RRF
 - **Cache**: Redis (optional)
 - **Deployment**: Docker, Google Cloud Run
-- **Build**: OrbStack (20-40% faster than Docker Desktop)
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
 - Python 3.9+
-- Docker / OrbStack
+- Docker
 - OpenAI API Key
 - (Optional) Google Cloud account for deployment
 
@@ -82,7 +95,7 @@ User Query → Glossary Expansion → Hybrid Retrieval → Reranking → LLM Gen
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ajaymauryabbn/telecom-rag.git
 cd telecom-rag
 ```
 
@@ -113,7 +126,7 @@ See [`CLOUD_DEPLOYMENT.md`](CLOUD_DEPLOYMENT.md) for detailed instructions.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 telecom-rag/
@@ -125,12 +138,17 @@ telecom-rag/
 │   ├── llm.py                 # LLM integration
 │   ├── embeddings.py          # Embedding generation
 │   ├── cache.py               # Semantic caching
-│   ├── evaluator.py           # RAGAS metrics
+│   ├── evaluation.py          # RAGAS metrics
 │   └── rate_limiter.py        # Rate limiting
 ├── data/
 │   ├── raw/                   # Source documents
 │   ├── chroma_db/             # Vector store
 │   └── glossary/              # Telecom terms
+├── scripts/                   # Dev/build utilities
+│   ├── Dockerfile.optimized   # BuildKit-optimized image
+│   ├── build-orbstack.sh      # OrbStack build script
+│   ├── build-fast.sh          # Fast BuildKit build
+│   └── setup-github.sh        # Repo setup helper
 ├── Dockerfile                 # Container definition
 ├── docker-compose.yml         # Local orchestration
 └── deploy-cloudbuild.sh       # Cloud deployment
@@ -138,7 +156,7 @@ telecom-rag/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -169,17 +187,15 @@ HF_TOKEN=hf_...
 
 ---
 
-## 📚 Documentation
+## Documentation
 
-- **[Architecture Document](TELECOM_RAG_ARCHITECTURE_DOCUMENT.md)** - Comprehensive system design
+- **[Architecture](ARCHITECTURE.md)** - Comprehensive system design
 - **[Cloud Deployment Guide](CLOUD_DEPLOYMENT.md)** - Production deployment
 - **[Docker Instructions](DOCKER_INSTRUCTIONS.md)** - Container setup
-- **[OrbStack Guide](docs/orbstack_guide.md)** - Build optimization
-- **[File Descriptions](FILE_DESCRIPTIONS.md)** - Codebase overview
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run accuracy tests
@@ -194,7 +210,7 @@ python tests/test_llm_eval.py
 
 ---
 
-## 📈 Evaluation Metrics
+## Evaluation Metrics
 
 The system uses **RAGAS** (Retrieval-Augmented Generation Assessment) with 6 metrics:
 
@@ -207,57 +223,21 @@ The system uses **RAGAS** (Retrieval-Augmented Generation Assessment) with 6 met
 
 ---
 
-## 🔐 Security
+## Security
 
-- ✅ API keys stored in `.env` (not committed)
-- ✅ `.gitignore` configured for secrets
-- ✅ `.gcloudignore` prevents secret uploads
-- ✅ Rate limiting enabled
-- ✅ Input validation
-- ✅ No PII storage
-
----
-
-## 🚀 Deployment History
-
-**Latest Deployment**: 2026-02-15
-- ✅ Deployed to Cloud Run
-- ✅ 32,802 documents loaded
-- ✅ Hybrid search enabled
-- ✅ All Claude's fixes verified
-- ✅ OrbStack optimized build
+- API keys stored in `.env` (not committed)
+- `.gitignore` configured for secrets
+- `.gcloudignore` prevents secret uploads
+- Rate limiting enabled
+- Input validation
+- No PII storage
 
 ---
 
-## 🤝 Contributing
-
-This is a private repository. For access or contributions, please contact the repository owner.
-
----
-
-## 📝 License
-
-Private - All Rights Reserved
-
----
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Dataset**: TeleQnA (HuggingFace)
 - **LLM**: OpenAI GPT-4o-mini
 - **Embeddings**: OpenAI text-embedding-3-large
 - **Framework**: LangChain, Streamlit
 - **Deployment**: Google Cloud Run
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check the [documentation](docs/)
-2. Review [Cloud Deployment Guide](CLOUD_DEPLOYMENT.md)
-3. Contact repository owner
-
----
-
-**Built with ❤️ for Telecom Operations**

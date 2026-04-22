@@ -8,9 +8,9 @@ app_port: 7860
 ---
 # Telecom RAG Assistant
 
-AI-powered Retrieval-Augmented Generation (RAG) system for telecom operations support, deployed on Google Cloud Run.
+AI-powered Retrieval-Augmented Generation (RAG) system for telecom operations support, deployed on Hugging Face Spaces.
 
-[![Cloud Run](https://img.shields.io/badge/Cloud%20Run-Live-4285F4?logo=google-cloud)](https://telecom-rag-service-506663951983.us-central1.run.app)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/ajaymauryabbn/telecom-rag)
 [![Python](https://img.shields.io/badge/Python-3.9-3776AB?logo=python)](https://www.python.org/)
 ![RAG](https://img.shields.io/badge/RAG-LangChain-green)
 ![VectorDB](https://img.shields.io/badge/VectorDB-ChromaDB-orange)
@@ -18,9 +18,9 @@ AI-powered Retrieval-Augmented Generation (RAG) system for telecom operations su
 
 ## Live Demo
 
-**Production URL**: https://telecom-rag-service-506663951983.us-central1.run.app
+**Production URL**: https://huggingface.co/spaces/ajaymauryabbn/telecom-rag
 
-> **Note**: Hosted on Cloud Run (scales to zero). First request may take 15–30s for a cold start — subsequent queries respond in 1–3s.
+> **Note**: Hosted on Hugging Face Spaces (Docker). The application is fast and prevents cold-starts within 48 hours of activity.
 
 Try asking: *"What is HARQ in 5G?"* or *"Explain MIMO technology"*
 
@@ -28,7 +28,7 @@ Try asking: *"What is HARQ in 5G?"* or *"Explain MIMO technology"*
 
 ## Demo
 
-![Telecom RAG Demo](docs/demo.gif)
+![Telecom RAG Demo](docs/hf_demo.webp)
 
 > *Ask any telecom question — the system retrieves relevant documents, generates a grounded answer, and shows a Trust Score with source citations.*
 

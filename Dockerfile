@@ -22,8 +22,8 @@ RUN if [ -f data/chroma_db.tar.gz ]; then \
     rm data/chroma_db.tar.gz; \
     fi
 
-# Make port 8501 available to the world outside this container
-EXPOSE 8501
+# Make port 7860 available to the world outside this container
+EXPOSE 7860
 
 # Cloud deployment environment variables (defaults for graceful degradation)
 ENV LLM_PROVIDER=openai
@@ -33,4 +33,4 @@ ENV ENABLE_HYBRID=true
 ENV ENABLE_REDIS=false
 
 # Run app.py when the container launches
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]

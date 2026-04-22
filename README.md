@@ -1,3 +1,11 @@
+---
+title: Telecom RAG
+emoji: 📡
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+---
 # Telecom RAG Assistant
 
 AI-powered Retrieval-Augmented Generation (RAG) system for telecom operations support, deployed on Google Cloud Run.

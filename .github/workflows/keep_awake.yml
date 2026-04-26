@@ -1,0 +1,24 @@
+name: Keep Hugging Face Space Awake
+
+on:
+  schedule:
+    # Run every 12 hours to prevent the 48-hour inactivity sleep
+    - cron: "0 */12 * * *"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Hugging Face Space
+        run: |
+          echo "Pinging Hugging Face Space to keep it awake..."
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://huggingface.co/spaces/ajaymauryabbn/telecom-rag)
+          echo "Response HTTP Status: $HTTP_STATUS"
+          
+          if [ "$HTTP_STATUS" -eq 200 ]; then
+            echo "✅ Ping successful! Space is awake."
+          else
+            echo "⚠️ Received non-200 status code, but request was sent."
+          fi
